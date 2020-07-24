@@ -60,7 +60,6 @@ class AddTaskScreen extends StatelessWidget {
                     padding: EdgeInsets.all(15.0),
                     splashColor: Colors.blueAccent,
                     onPressed: () {
-                      Task newTask;
                       if (newTaskTitle != null) {
                         final newTask = Task(taskText: newTaskTitle, isDone: false);
                         hiveHelper.addTask(newTask);

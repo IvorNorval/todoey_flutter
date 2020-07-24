@@ -26,17 +26,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: FutureBuilder(
-            future: Hive.openBox<Task>('tasks'),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasError)
-                  return Text(snapshot.error.toString());
-                else
-                  return TasksScreen();
-              } else {
-                return Scaffold();
-              }
-            }),
+          future: Hive.openBox<Task>('tasks'),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError)
+                return Text(snapshot.error.toString());
+              else
+                return TasksScreen();
+            } else {
+              return Scaffold();
+            }
+          },
+        ),
       ),
     );
   }

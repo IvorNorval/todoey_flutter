@@ -48,7 +48,6 @@ class HiveHelper extends ChangeNotifier {
     List<Task> list = getTaskList();
     final Task item = list.removeAt(oldIndex);
     list.insert(newIndex, item);
-    var map = Map.fromIterable(list);
     deleteAllTask();
     getTaskBox().addAll(list);
     notifyListeners();

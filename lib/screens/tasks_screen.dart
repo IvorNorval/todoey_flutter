@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 import 'package:todoey_flutter/widgets/list_view_card.dart';
 
 class TasksScreen extends StatelessWidget {
+  static const String id = 'TasksScreen';
   @override
   Widget build(BuildContext context) {
     String newTaskTitle;
+    int listCount = 0;
     final TextEditingController _controller = new TextEditingController();
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
@@ -18,7 +21,6 @@ class TasksScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xffc44536),
             onPressed: () {
-              Task newTask;
               if (newTaskTitle != null) {
                 final newTask = Task(taskText: newTaskTitle, isDone: false);
                 hiveHelper.addTask(newTask);
@@ -26,11 +28,7 @@ class TasksScreen extends StatelessWidget {
               _controller.clear();
               FocusScope.of(context).requestFocus(FocusNode());
               newTaskTitle = null;
-//              showModalBottomSheet(
-//                context: context,
-//                isScrollControlled: true,
-//                builder: (context) => AddTaskScreen(),
-//              );
+              listCount = hiveHelper.getTaskBoxLength();
             },
             child: Icon(
               Icons.add,
@@ -92,13 +90,17 @@ class TasksScreen extends StatelessWidget {
                           key: Key(hiveHelper.getTask(index).taskText),
                           onDismissed: (direction) async {
                             await hiveHelper.deleteTask(index);
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Color(0xFF283d3b),
-                                content: Text('delete ${hiveHelper.getTask(index).taskText}'),
-                                behavior: SnackBarBehavior.fixed,
-                              ),
-                            );
+                            if (hiveHelper.getTaskBoxLength() == 0 && listCount == 1) {
+                              listCount = hiveHelper.getTaskBoxLength();
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return EasterEggScreen();
+                                },
+                              );
+                            }
+                            listCount = hiveHelper.getTaskBoxLength();
                           },
                           background: Container(
                             color: Color(0xfFc44900),
@@ -168,6 +170,7 @@ class TasksScreen extends StatelessWidget {
                         FocusScope.of(context).requestFocus(FocusNode());
                         _controller.clear();
                         newTaskTitle = null;
+                        listCount = hiveHelper.getTaskBoxLength();
                       },
                     ),
                   ),
