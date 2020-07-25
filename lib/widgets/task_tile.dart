@@ -26,7 +26,6 @@ class TaskTile extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      //Provider.of<TaskListModel>(context).tasks[0].taskText,
                       task.taskText,
                       style: TextStyle(decoration: task.isDone ? TextDecoration.lineThrough : null, color: Color(0xFF283d3b)),
                     ),

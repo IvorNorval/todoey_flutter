@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 
-import '../constants.dart';
 import 'list_view_card.dart';
 
 class TaskListWidget extends StatelessWidget {
@@ -38,9 +37,7 @@ class TaskListWidget extends StatelessWidget {
                           context: context,
                           isScrollControlled: true,
                           builder: (context) {
-                            return EasterEggScreen(
-                              eggTrigger: EasterEggs.noTasks,
-                            );
+                            return EasterEggScreen();
                           },
                         );
                       }

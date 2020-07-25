@@ -6,8 +6,6 @@ import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 import 'package:todoey_flutter/widgets/task_tile.dart';
 
-import '../constants.dart';
-
 class ListViewCard extends StatelessWidget {
   ListViewCard({this.index, this.key});
   final int index;
@@ -26,9 +24,7 @@ class ListViewCard extends StatelessWidget {
               context: context,
               isScrollControlled: true,
               builder: (context) {
-                return EasterEggScreen(
-                  eggTrigger: EasterEggs.AllDone,
-                );
+                return EasterEggScreen();
               },
             );
           }
