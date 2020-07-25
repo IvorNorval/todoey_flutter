@@ -52,4 +52,15 @@ class HiveHelper extends ChangeNotifier {
     getTaskBox().addAll(list);
     notifyListeners();
   }
+
+  bool allBoxesTicked(HiveHelper hiveHelper) {
+    bool allsTicked = true;
+    for (Task tk in getTaskList()) {
+      if (!tk.isDone) {
+        allsTicked = false;
+        break;
+      }
+    }
+    return allsTicked;
+  }
 }

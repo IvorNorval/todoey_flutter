@@ -38,7 +38,7 @@ class TaskTile extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Checkbox(
                 value: task.isDone,
-                activeColor: Color(0xFF283d3b),
+                activeColor: Color(0xfFc44900),
                 onChanged: onChangedFunction,
               ),
             ),
