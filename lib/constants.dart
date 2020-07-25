@@ -3,5 +3,3 @@ enum EasterEggs {
   AllDone,
   manyBoxes,
 }
-
-const kActiveCardColor = 0xFFedddd4;
