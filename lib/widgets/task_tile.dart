@@ -27,7 +27,10 @@ class TaskTile extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       task.taskText,
-                      style: TextStyle(decoration: task.isDone ? TextDecoration.lineThrough : null, color: Color(0xFF283d3b)),
+                      style: TextStyle(
+                        decoration: task.isDone ? TextDecoration.lineThrough : null,
+                        color: Color(0xFF283d3b),
+                      ),
                     ),
                   ),
                 ],

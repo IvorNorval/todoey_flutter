@@ -19,7 +19,7 @@ class ListViewCard extends StatelessWidget {
         task: task,
         onChangedFunction: (checkboxState) async {
           await hiveHelper.toggleDoneState(index);
-          if (hiveHelper.allBoxesTicked(hiveHelper)) {
+          if (hiveHelper.allBoxesTicked()) {
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,

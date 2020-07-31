@@ -13,10 +13,9 @@ class EasterEggScreen extends StatelessWidget {
         String eggImage;
         if (hiveHelper.getTaskBoxLength() == 0)
           eggImage = 'images/egg1.gif';
-        else if (hiveHelper.getTaskBoxLength() == 10)
-          eggImage = 'images/manyBoxes.gif';
-        else
+        else if (hiveHelper.allBoxesTicked())
           eggImage = 'images/boxes.gif';
+        else if (hiveHelper.getTaskBoxLength() == 10) eggImage = 'images/manyBoxes.gif';
 
         return SingleChildScrollView(
           child: GestureDetector(
