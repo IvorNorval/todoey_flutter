@@ -21,6 +21,7 @@ class TaskListWidget extends StatelessWidget {
               ),
             ),
             child: ReorderableListView(
+              scrollController: hiveHelper.scrollController,
               onReorder: hiveHelper.moveTask,
               scrollDirection: Axis.vertical,
               padding: const EdgeInsets.symmetric(vertical: 8.0),

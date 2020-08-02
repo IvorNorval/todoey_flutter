@@ -3,6 +3,8 @@ import 'package:hive/hive.dart';
 import 'package:todoey_flutter/models/task.dart';
 
 class HiveHelper extends ChangeNotifier {
+  ScrollController scrollController = new ScrollController();
+
   Box<Task> getTaskBox() => Hive.box('tasks');
 
   int getTaskBoxLength() => getTaskBox().length;

@@ -77,6 +77,13 @@ class TaskTextFieldWidget extends StatelessWidget {
                       },
                     );
                   }
+                  if (hiveHelper.getTaskBoxLength() > 9) {
+                    hiveHelper.scrollController.animateTo(
+                      hiveHelper.scrollController.position.maxScrollExtent,
+                      curve: Curves.easeOut,
+                      duration: const Duration(milliseconds: 300),
+                    );
+                  }
                 },
               ),
             ),
