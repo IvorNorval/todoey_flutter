@@ -18,15 +18,13 @@ Features:
 3. Watch out for eater eggs. 
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   geolocator: ^5.3.2+2
   http: ^0.12.1
   flutter_spinkit: ^4.1.2+1
   characters: ^1.0.0
   intl: ^0.16.1
   shimmer: ^1.1.1
+  
 
 This project is a starting point for a Flutter application.
 
