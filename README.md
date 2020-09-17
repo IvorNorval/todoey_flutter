@@ -4,8 +4,8 @@ A new Flutter application.
 
 
 ![Alt text](/ScreenShot1.jpg?raw=true )
-![Alt text](/ScreenShot2.jpg?raw=true )
-![Alt text](/ScreenShot3.jpg?raw=true )
+![Alt text](/screenShot2.jpg?raw=true )
+![Alt text](/Screenshot3.jpg?raw=true )
 ![Alt text](/ScreenShot4.jpg?raw=true )
 ![Alt text](/ScreenShot5.jpg?raw=true )
 
