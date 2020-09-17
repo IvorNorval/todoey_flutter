@@ -2,7 +2,31 @@
 
 A new Flutter application.
 
-## Getting Started
+
+![Alt text](/ScreenShot1.jpg?raw=true )
+![Alt text](/ScreenShot2.jpg?raw=true )
+![Alt text](/ScreenShot3.jpg?raw=true )
+![Alt text](/ScreenShot4.jpg?raw=true )
+![Alt text](/ScreenShot5.jpg?raw=true )
+
+This is a simple to do app.
+
+Features:
+
+1. Prioritise tasks by hold and drag them in the list.
+2. Swipe left or right to delete task.
+3. Watch out for eater eggs. 
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  geolocator: ^5.3.2+2
+  http: ^0.12.1
+  flutter_spinkit: ^4.1.2+1
+  characters: ^1.0.0
+  intl: ^0.16.1
+  shimmer: ^1.1.1
 
 This project is a starting point for a Flutter application.
 
