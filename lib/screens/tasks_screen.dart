@@ -13,7 +13,7 @@ class TasksScreen extends StatelessWidget {
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
         return Scaffold(
-          backgroundColor: Color(0xff197278),
+          backgroundColor: const Color(0xff197278),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

@@ -11,11 +11,13 @@ class EasterEggScreen extends StatelessWidget {
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
         String eggImage;
-        if (hiveHelper.getTaskBoxLength() == 0)
+        if (hiveHelper.getTaskBoxLength() == 0) {
           eggImage = 'images/egg1.gif';
-        else if (hiveHelper.allBoxesTicked())
+        } else if (hiveHelper.allBoxesTicked()) {
           eggImage = 'images/boxes.gif';
-        else if (hiveHelper.getTaskBoxLength() == 10) eggImage = 'images/manyBoxes.gif';
+        } else if (hiveHelper.getTaskBoxLength() == 10) {
+          eggImage = 'images/manyBoxes.gif';
+        }
 
         return SingleChildScrollView(
           child: GestureDetector(
@@ -23,11 +25,12 @@ class EasterEggScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             child: Container(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-              color: Color(0xFF757575),
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              color: const Color(0xFF757575),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.0),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20.0),

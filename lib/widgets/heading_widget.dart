@@ -9,15 +9,16 @@ class Heading extends StatelessWidget {
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
         return Container(
-          padding: EdgeInsets.only(top: 60.0, left: 30.0, right: 30.0, bottom: 20.0),
+          padding: const EdgeInsets.only(
+              top: 60.0, left: 30.0, right: 30.0, bottom: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Shimmer.fromColors(
-                baseColor: Color(0xFFedddd4),
-                period: Duration(milliseconds: 5000),
-                highlightColor: Color(0xFF283d3b),
-                child: Text(
+                baseColor: const Color(0xFFedddd4),
+                period: const Duration(milliseconds: 5000),
+                highlightColor: const Color(0xFF283d3b),
+                child: const Text(
                   'ToDoey',
                   style: TextStyle(
                     color: Color(0xFFedddd4),
@@ -27,13 +28,13 @@ class Heading extends StatelessWidget {
                 ),
               ),
               Text(
-                '${hiveHelper.getTaskBoxLength()} todo\'s',
-                style: TextStyle(
+                "${hiveHelper.getTaskBoxLength()} todo's",
+                style: const TextStyle(
                   color: Color(0xfFc44900),
                   fontSize: 17.0,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
             ],

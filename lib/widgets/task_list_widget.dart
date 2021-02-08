@@ -12,8 +12,8 @@ class TaskListWidget extends StatelessWidget {
       builder: (context, hiveHelper, Widget child) {
         return Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            decoration: const BoxDecoration(
               color: Color(0xFFedddd4),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
@@ -23,7 +23,6 @@ class TaskListWidget extends StatelessWidget {
             child: ReorderableListView(
               scrollController: hiveHelper.scrollController,
               onReorder: hiveHelper.moveTask,
-              scrollDirection: Axis.vertical,
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               children: List.generate(
                 hiveHelper.getTaskBoxLength(),
@@ -33,7 +32,8 @@ class TaskListWidget extends StatelessWidget {
                     onDismissed: (direction) async {
                       int listCount = hiveHelper.getTaskBoxLength();
                       await hiveHelper.deleteTask(index);
-                      if (hiveHelper.getTaskBoxLength() == 0 && listCount == 1) {
+                      if (hiveHelper.getTaskBoxLength() == 0 &&
+                          listCount == 1) {
                         showModalBottomSheet(
                           context: context,
                           isScrollControlled: true,
@@ -45,7 +45,7 @@ class TaskListWidget extends StatelessWidget {
                       listCount = hiveHelper.getTaskBoxLength();
                     },
                     background: Container(
-                      color: Color(0xfFc44900),
+                      color: const Color(0xfFc44900),
                     ),
                     child: ListViewCard(
                       index: index,

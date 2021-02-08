@@ -3,18 +3,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:todoey_flutter/models/task.dart';
 
 class TaskTile extends StatelessWidget {
-  TaskTile({this.onChangedFunction, this.task});
-  final Function onChangedFunction;
+  const TaskTile({this.onChangedFunction, this.task});
+  final void Function(bool) onChangedFunction;
   final Task task;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(4),
+      margin: const EdgeInsets.all(4),
       color: Colors.white,
       child: InkWell(
-        splashColor: Color(0xff197278),
-        onTap: () => Fluttertoast.showToast(msg: "Item selected.", toastLength: Toast.LENGTH_SHORT),
+        splashColor: const Color(0xff197278),
+        onTap: () => Fluttertoast.showToast(
+            msg: "Item selected.", toastLength: Toast.LENGTH_SHORT),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -28,8 +29,9 @@ class TaskTile extends StatelessWidget {
                     child: Text(
                       task.taskText,
                       style: TextStyle(
-                        decoration: task.isDone ? TextDecoration.lineThrough : null,
-                        color: Color(0xFF283d3b),
+                        decoration:
+                            task.isDone ? TextDecoration.lineThrough : null,
+                        color: const Color(0xFF283d3b),
                       ),
                     ),
                   ),
@@ -40,7 +42,7 @@ class TaskTile extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Checkbox(
                 value: task.isDone,
-                activeColor: Color(0xfFc44900),
+                activeColor: const Color(0xfFc44900),
                 onChanged: onChangedFunction,
               ),
             ),

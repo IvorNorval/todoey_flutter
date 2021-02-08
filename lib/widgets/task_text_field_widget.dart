@@ -6,7 +6,7 @@ import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 
 class TaskTextFieldWidget extends StatelessWidget {
-  final TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,10 @@ class TaskTextFieldWidget extends StatelessWidget {
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
         return Container(
-          color: Color(0xFFedddd4),
+          color: const Color(0xFFedddd4),
           child: Container(
-            padding: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.all(5.0),
+            decoration: const BoxDecoration(
               color: Color(0xFF283d3b),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.0),
@@ -25,7 +25,7 @@ class TaskTextFieldWidget extends StatelessWidget {
               ),
             ),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFFedddd4),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.0),
@@ -35,9 +35,9 @@ class TaskTextFieldWidget extends StatelessWidget {
               child: TextField(
                 controller: _controller,
                 textInputAction: TextInputAction.go,
-                cursorColor: Color(0xFF283d3b),
+                cursorColor: const Color(0xFF283d3b),
                 textAlign: TextAlign.center,
-                decoration: new InputDecoration(
+                decoration: const InputDecoration(
                     hintText: 'Add new to do...',
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(

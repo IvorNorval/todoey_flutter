@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:todoey_flutter/models/task.dart';
 
 class HiveHelper extends ChangeNotifier {
-  ScrollController scrollController = new ScrollController();
+  ScrollController scrollController = ScrollController();
 
   Box<Task> getTaskBox() => Hive.box('tasks');
 
@@ -17,7 +17,7 @@ class HiveHelper extends ChangeNotifier {
   }
 
   List<Task> getTaskList() {
-    List<Task> taskList = [];
+    final List<Task> taskList = [];
     for (int n = 0; n < getTaskBoxLength(); n++) {
       taskList.add(getTask(n));
     }
@@ -30,13 +30,13 @@ class HiveHelper extends ChangeNotifier {
   }
 
   Future<void> deleteAllTask() async {
-    var keys = getTaskBox().keys;
+    final keys = getTaskBox().keys;
     await getTaskBox().deleteAll(keys);
     notifyListeners();
   }
 
   Future<void> toggleDoneState(int index) async {
-    Task task = getTask(index);
+    final Task task = getTask(index);
     Task newTask;
     newTask = Task(taskText: task.taskText, isDone: !task.isDone);
     await getTaskBox().putAt(index, newTask);
@@ -44,25 +44,26 @@ class HiveHelper extends ChangeNotifier {
   }
 
   Future<void> moveTask(int oldIndex, int newIndex) async {
+    int index = newIndex;
     if (newIndex > oldIndex) {
-      newIndex -= 1;
+      index -= 1;
     }
-    List<Task> list = getTaskList();
+    final List<Task> list = getTaskList();
     final Task item = list.removeAt(oldIndex);
-    list.insert(newIndex, item);
+    list.insert(index, item);
     deleteAllTask();
     getTaskBox().addAll(list);
     notifyListeners();
   }
 
   bool allBoxesTicked() {
-    bool allsTicked = true;
-    for (Task tk in getTaskList()) {
+    bool allTicked = true;
+    for (final Task tk in getTaskList()) {
       if (!tk.isDone) {
-        allsTicked = false;
+        allTicked = false;
         break;
       }
     }
-    return allsTicked;
+    return allTicked;
   }
 }
