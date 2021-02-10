@@ -65,7 +65,14 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
                 ),
               ),
               Text(
-                "${hiveHelper.getTaskBoxLength()} todo's",
+                "${hiveHelper.getDoneTasksCount()} done",
+                style: const TextStyle(
+                  color: Color(0xfFc44900),
+                  fontSize: 17.0,
+                ),
+              ),
+              Text(
+                "${hiveHelper.getTaskBoxLength() - hiveHelper.getDoneTasksCount()} todo's",
                 style: const TextStyle(
                   color: Color(0xfFc44900),
                   fontSize: 17.0,

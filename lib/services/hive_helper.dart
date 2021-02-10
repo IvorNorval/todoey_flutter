@@ -14,10 +14,19 @@ class HiveHelper extends ChangeNotifier {
   dynamic getGlobalKey(int index) => getTaskBox().keyAt(index);
 
   void addTask(Task newTask) {
-    Iterable<dynamic> keys = getTaskBox().keys;
-    print(keys.toString());
     getTaskBox().add(newTask);
     notifyListeners();
+  }
+
+  int getDoneTasksCount() {
+    final List<Task> taskList = getTaskList();
+    int count = 0;
+    for (final Task task in taskList) {
+      if (task.isDone) {
+        count++;
+      }
+    }
+    return count;
   }
 
   List<Task> getTaskList() {
