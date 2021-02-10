@@ -12,8 +12,8 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
   AnimationController _controller;
 
   final Tween<double> turnsTween = Tween<double>(
-    begin: 1,
-    end: 3,
+    begin: 0,
+    end: 1,
   );
 
   @override

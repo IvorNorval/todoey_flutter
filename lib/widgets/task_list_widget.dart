@@ -28,7 +28,7 @@ class TaskListWidget extends StatelessWidget {
                 hiveHelper.getTaskBoxLength(),
                 (index) {
                   return Dismissible(
-                    key: Key(hiveHelper.getTask(index).taskText),
+                    key: Key(hiveHelper.getGlobalKey(index).toString()),
                     onDismissed: (direction) async {
                       int listCount = hiveHelper.getTaskBoxLength();
                       await hiveHelper.deleteTask(index);
