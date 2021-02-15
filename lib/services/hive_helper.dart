@@ -50,10 +50,15 @@ class HiveHelper extends ChangeNotifier {
 
   Future<void> toggleDoneState(int index) async {
     final Task task = getTask(index);
-    Task newTask;
-    newTask =
-        Task(taskText: task.taskText, isDone: !task.isDone, color: task.color);
-    await getTaskBox().putAt(index, newTask);
+    task.isDone = !task.isDone;
+    await getTaskBox().putAt(index, task);
+    notifyListeners();
+  }
+
+  Future<void> updateColor(int index, int color) async {
+    final Task task = getTask(index);
+    task.color = color;
+    await getTaskBox().putAt(index, task);
     notifyListeners();
   }
 

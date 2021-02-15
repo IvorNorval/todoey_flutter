@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
@@ -34,57 +35,66 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.landscape) {
-      _controller.forward();
-    } else {
-      _controller.forward();
-    }
+    return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
+      EdgeInsets edgeInsets;
+      if (MediaQuery.of(context).orientation == Orientation.landscape) {
+        edgeInsets = EdgeInsets.only(
+            top: isKeyboardVisible ? 5.0 : 60.0,
+            left: 30.0,
+            right: 30.0,
+            bottom: isKeyboardVisible ? 5 : 20.0);
+        _controller.forward();
+      } else {
+        edgeInsets = const EdgeInsets.only(
+            top: 60.0, left: 30.0, right: 30.0, bottom: 20.0);
+        _controller.forward();
+      }
 
-    return Consumer<HiveHelper>(
-      builder: (context, hiveHelper, Widget child) {
-        return Container(
-          padding: const EdgeInsets.only(
-              top: 60.0, left: 30.0, right: 30.0, bottom: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              RotationTransition(
-                turns: turnsTween.animate(_controller),
-                child: Shimmer.fromColors(
-                  baseColor: const Color(0xFFedddd4),
-                  period: const Duration(milliseconds: 5000),
-                  highlightColor: const Color(0xFF283d3b),
-                  child: const Text(
-                    'ToDoey',
-                    style: TextStyle(
-                      color: Color(0xFFedddd4),
-                      fontSize: 35.0,
-                      fontWeight: FontWeight.w700,
+      return Consumer<HiveHelper>(
+        builder: (context, hiveHelper, Widget child) {
+          return Container(
+            padding: edgeInsets,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                RotationTransition(
+                  turns: turnsTween.animate(_controller),
+                  child: Shimmer.fromColors(
+                    baseColor: const Color(0xFFedddd4),
+                    period: const Duration(milliseconds: 5000),
+                    highlightColor: const Color(0xFF283d3b),
+                    child: const Text(
+                      'ToDoey',
+                      style: TextStyle(
+                        color: Color(0xFFedddd4),
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                "${hiveHelper.getDoneTasksCount()} done",
-                style: const TextStyle(
-                  color: Color(0xfFc44900),
-                  fontSize: 17.0,
+                Text(
+                  "${hiveHelper.getDoneTasksCount()} done",
+                  style: const TextStyle(
+                    color: Color(0xfFc44900),
+                    fontSize: 17.0,
+                  ),
                 ),
-              ),
-              Text(
-                "${hiveHelper.getTaskBoxLength() - hiveHelper.getDoneTasksCount()} todo's",
-                style: const TextStyle(
-                  color: Color(0xfFc44900),
-                  fontSize: 17.0,
+                Text(
+                  "${hiveHelper.getTaskBoxLength() - hiveHelper.getDoneTasksCount()} todo's",
+                  style: const TextStyle(
+                    color: Color(0xfFc44900),
+                    fontSize: 17.0,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-            ],
-          ),
-        );
-      },
-    );
+                const SizedBox(
+                  height: 10.0,
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    });
   }
 }

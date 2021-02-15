@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
-
-import 'list_view_card.dart';
+import 'package:todoey_flutter/widgets/task_tile.dart';
 
 class TaskListWidget extends StatelessWidget {
   @override
@@ -47,7 +46,7 @@ class TaskListWidget extends StatelessWidget {
                     background: Container(
                       color: const Color(0xfFc44900),
                     ),
-                    child: ListViewCard(
+                    child: TaskTile(
                       index: index,
                       key: Key('$index'),
                     ),
