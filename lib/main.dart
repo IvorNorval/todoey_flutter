@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:todoey_flutter/constants.dart';
 import 'package:todoey_flutter/screens/tasks_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
                 return Text(snapshot.error.toString());
               } else {
                 final Box<Task> box = Hive.box('tasks');
-                if (box.isEmpty) box.addAll(kFirstList);
+                //if (box.isEmpty) box.addAll(kFirstList);
                 return TasksScreen();
               }
             } else {

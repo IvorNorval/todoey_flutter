@@ -59,36 +59,69 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
               children: <Widget>[
                 RotationTransition(
                   turns: turnsTween.animate(_controller),
-                  child: Shimmer.fromColors(
-                    baseColor: const Color(0xFFedddd4),
-                    period: const Duration(milliseconds: 5000),
-                    highlightColor: const Color(0xFF283d3b),
-                    child: const Text(
-                      'ToDoey',
-                      style: TextStyle(
-                        color: Color(0xFFedddd4),
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.w700,
+                  child: !hiveHelper.isInfoList
+                      ? Shimmer.fromColors(
+                          baseColor: const Color(0xFFedddd4),
+                          period: const Duration(milliseconds: 5000),
+                          highlightColor: const Color(0xFF283d3b),
+                          child: const Text(
+                            'ToDoey',
+                            style: TextStyle(
+                              color: Color(0xFFedddd4),
+                              fontSize: 35.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ))
+                      : GestureDetector(
+                          onTap: () {
+                            hiveHelper.resetInfoList();
+                          },
+                          child: const Image(
+                            image: AssetImage('images/going_back.png'),
+                            height: 80,
+                          ),
+                        ),
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "${hiveHelper.getDoneTasksCount()} done",
+                          style: const TextStyle(
+                            color: Color(0xfFc44900),
+                            fontSize: 17.0,
+                          ),
+                        ),
+                        Text(
+                          "${hiveHelper.getTaskBoxLength() - hiveHelper.getDoneTasksCount()} todo's",
+                          style: const TextStyle(
+                            color: Color(0xfFc44900),
+                            fontSize: 17.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Expanded(
+                      child: SizedBox(
+                        width: 180,
                       ),
                     ),
-                  ),
-                ),
-                Text(
-                  "${hiveHelper.getDoneTasksCount()} done",
-                  style: const TextStyle(
-                    color: Color(0xfFc44900),
-                    fontSize: 17.0,
-                  ),
-                ),
-                Text(
-                  "${hiveHelper.getTaskBoxLength() - hiveHelper.getDoneTasksCount()} todo's",
-                  style: const TextStyle(
-                    color: Color(0xfFc44900),
-                    fontSize: 17.0,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
+                    if (!hiveHelper.isInfoList)
+                      IconButton(
+                        iconSize: 40,
+                        icon: Image.asset('images/info_icon.png'),
+                        onPressed: () {
+                          hiveHelper.setInfoList();
+                        },
+                      )
+                    else
+                      const Image(
+                        image: AssetImage('images/info_icon.png'),
+                        height: 40,
+                        width: 40,
+                      ),
+                  ],
                 ),
               ],
             ),

@@ -2,28 +2,82 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:todoey_flutter/models/task.dart';
 
+import '../constants.dart';
+
 class HiveHelper extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
+  bool isInfoList;
+  List<Task> infoTasks = [];
+
+  HiveHelper() {
+    isInfoList = false;
+  }
 
   Box<Task> getTaskBox() => Hive.box('tasks');
 
-  int getTaskBoxLength() => getTaskBox().length;
+  void setInfoList() {
+    isInfoList = true;
+    infoTasks.clear();
+    infoTasks.addAll(kFirstList);
+    for (final Task tk in infoTasks) {
+      tk.isDone = false;
+    }
+    notifyListeners();
+  }
 
-  Task getTask(int index) => getTaskBox().getAt(index);
+  void resetInfoList() {
+    isInfoList = false;
+    notifyListeners();
+  }
 
-  dynamic getGlobalKey(int index) => getTaskBox().keyAt(index);
+  int getTaskBoxLength() {
+    if (isInfoList) {
+      return infoTasks.length;
+    } else {
+      return getTaskBox().length;
+    }
+  }
+
+  Task getTask(int index) {
+    if (isInfoList) {
+      return infoTasks[index];
+    } else {
+      return getTaskBox().getAt(index);
+    }
+  }
+
+  dynamic getGlobalKey(int index) {
+    if (isInfoList) {
+      return index;
+    } else {
+      return getTaskBox().keyAt(index);
+    }
+  }
 
   void addTask(Task newTask) {
-    getTaskBox().add(newTask);
+    if (isInfoList) {
+      infoTasks.add(newTask);
+    } else {
+      getTaskBox().add(newTask);
+    }
     notifyListeners();
   }
 
   int getDoneTasksCount() {
-    final List<Task> taskList = getTaskList();
     int count = 0;
-    for (final Task task in taskList) {
-      if (task.isDone) {
-        count++;
+    if (isInfoList) {
+      for (final Task task in infoTasks) {
+        if (task.isDone) {
+          count++;
+        }
+      }
+    } else {
+      final List<Task> taskList = getTaskList();
+
+      for (final Task task in taskList) {
+        if (task.isDone) {
+          count++;
+        }
       }
     }
     return count;
@@ -38,7 +92,11 @@ class HiveHelper extends ChangeNotifier {
   }
 
   Future<void> deleteTask(int index) async {
-    await getTaskBox().deleteAt(index);
+    if (isInfoList) {
+      infoTasks.removeAt(index);
+    } else {
+      await getTaskBox().deleteAt(index);
+    }
     notifyListeners();
   }
 
@@ -49,16 +107,24 @@ class HiveHelper extends ChangeNotifier {
   }
 
   Future<void> toggleDoneState(int index) async {
-    final Task task = getTask(index);
-    task.isDone = !task.isDone;
-    await getTaskBox().putAt(index, task);
+    if (isInfoList) {
+      infoTasks[index].isDone = !infoTasks[index].isDone;
+    } else {
+      final Task task = getTask(index);
+      task.isDone = !task.isDone;
+      await getTaskBox().putAt(index, task);
+    }
     notifyListeners();
   }
 
   Future<void> updateColor(int index, int color) async {
-    final Task task = getTask(index);
-    task.color = color;
-    await getTaskBox().putAt(index, task);
+    if (isInfoList) {
+      infoTasks[index].color = color;
+    } else {
+      final Task task = getTask(index);
+      task.color = color;
+      await getTaskBox().putAt(index, task);
+    }
     notifyListeners();
   }
 
@@ -67,22 +133,38 @@ class HiveHelper extends ChangeNotifier {
     if (newIndex > oldIndex) {
       index -= 1;
     }
-    final List<Task> list = getTaskList();
-    final Task item = list.removeAt(oldIndex);
-    list.insert(index, item);
-    deleteAllTask();
-    getTaskBox().addAll(list);
+
+    if (isInfoList) {
+      final Task item = infoTasks.removeAt(oldIndex);
+      infoTasks.insert(index, item);
+    } else {
+      final List<Task> list = getTaskList();
+      final Task item = list.removeAt(oldIndex);
+      list.insert(index, item);
+      deleteAllTask();
+      getTaskBox().addAll(list);
+    }
     notifyListeners();
   }
 
   bool allBoxesTicked() {
     bool allTicked = true;
-    for (final Task tk in getTaskList()) {
-      if (!tk.isDone) {
-        allTicked = false;
-        break;
+    if (isInfoList) {
+      for (final Task tk in infoTasks) {
+        if (!tk.isDone) {
+          allTicked = false;
+          break;
+        }
+      }
+    } else {
+      for (final Task tk in getTaskList()) {
+        if (!tk.isDone) {
+          allTicked = false;
+          break;
+        }
       }
     }
+
     return allTicked;
   }
 }
