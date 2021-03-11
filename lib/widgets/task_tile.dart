@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:todoey_flutter/models/task.dart';
@@ -20,8 +19,6 @@ class TaskTile extends StatelessWidget {
         color: Color(task.color),
         child: InkWell(
           splashColor: const Color(0xff197278),
-          onTap: () =>
-              Fluttertoast.showToast(msg: "", toastLength: Toast.LENGTH_SHORT),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
