@@ -34,6 +34,9 @@ class TaskTextFieldWidget extends StatelessWidget {
                 ),
               ),
               child: TextField(
+                onTap: () {
+                  hiveHelper.hideAd();
+                },
                 controller: _controller,
                 textInputAction: TextInputAction.go,
                 cursorColor: const Color(0xFF283d3b),
@@ -69,7 +72,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                       isDone: false,
                       color: 0xffffffff,
                     );
-                    await _selectRunsDialog(context: context, task: newTask);
+                    await _selectColorDialog(context: context, task: newTask);
                     hiveHelper.addTask(newTask);
                   }
                   _controller.clear();
@@ -90,6 +93,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                       duration: const Duration(milliseconds: 300),
                     );
                   }
+                  hiveHelper.setShowAd();
                 },
               ),
             ),
@@ -99,7 +103,7 @@ class TaskTextFieldWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _selectRunsDialog({BuildContext context, Task task}) async {
+  Future<void> _selectColorDialog({BuildContext context, Task task}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!

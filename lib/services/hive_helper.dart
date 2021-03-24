@@ -8,9 +8,21 @@ class HiveHelper extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
   bool isInfoList;
   List<Task> infoTasks = [];
+  bool showAd;
 
   HiveHelper() {
     isInfoList = false;
+    showAd = true;
+  }
+
+  void setShowAd() {
+    showAd = true;
+    notifyListeners();
+  }
+
+  void hideAd() {
+    showAd = false;
+    notifyListeners();
   }
 
   Box<Task> getTaskBox() => Hive.box('tasks');

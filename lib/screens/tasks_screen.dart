@@ -18,7 +18,7 @@ class TasksScreen extends StatefulWidget {
 class _TasksScreenState extends State<TasksScreen> {
   BannerAd _ad;
   bool _isAdLoaded = false;
-  Orientation orientation;
+  Orientation _orientation;
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _TasksScreenState extends State<TasksScreen> {
     return Consumer<HiveHelper>(
       builder: (context, hiveHelper, Widget child) {
         if (MediaQuery.of(context).orientation == Orientation.landscape) {
-          if (orientation != null && orientation == Orientation.portrait) {
+          if (_orientation != null && _orientation == Orientation.portrait) {
             _isAdLoaded = false;
             _ad?.dispose();
             _ad = BannerAd(
@@ -80,7 +80,7 @@ class _TasksScreenState extends State<TasksScreen> {
 
             _ad.load();
           }
-          orientation = Orientation.landscape;
+          _orientation = Orientation.landscape;
           return SafeArea(
             child: Scaffold(
               backgroundColor: const Color(0xff197278),
@@ -95,7 +95,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         TaskListWidget(),
-                        if (_isAdLoaded)
+                        if (_isAdLoaded && hiveHelper.showAd)
                           Container(
                             color: const Color(0xFFedddd4),
                             height: 72.0,
@@ -116,7 +116,7 @@ class _TasksScreenState extends State<TasksScreen> {
             ),
           );
         } else {
-          if (orientation != null && orientation == Orientation.landscape) {
+          if (_orientation != null && _orientation == Orientation.landscape) {
             _isAdLoaded = false;
             _ad?.dispose();
             _ad = BannerAd(
@@ -140,7 +140,7 @@ class _TasksScreenState extends State<TasksScreen> {
 
             _ad.load();
           }
-          orientation = Orientation.portrait;
+          _orientation = Orientation.portrait;
           return Scaffold(
             backgroundColor: const Color(0xff197278),
             body: Column(
@@ -148,7 +148,7 @@ class _TasksScreenState extends State<TasksScreen> {
               children: <Widget>[
                 Heading(),
                 TaskListWidget(),
-                if (_isAdLoaded)
+                if (_isAdLoaded && hiveHelper.showAd)
                   Container(
                     color: const Color(0xFFedddd4),
                     height: 72.0,
