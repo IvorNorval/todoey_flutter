@@ -7,16 +7,16 @@ import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 
 class TaskTile extends StatelessWidget {
-  const TaskTile({this.index, Key key}) : super(key: key);
-  final int index;
+  const TaskTile({this.index, Key? key}) : super(key: key);
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HiveHelper>(builder: (context, hiveHelper, Widget child) {
-      final Task task = hiveHelper.getTask(index);
+    return Consumer<HiveHelper>(builder: (context, hiveHelper, Widget? child) {
+      final Task task = hiveHelper.getTask(index)!;
       return Card(
         margin: const EdgeInsets.all(4),
-        color: Color(task.color),
+        color: Color(task.color!),
         child: InkWell(
           splashColor: const Color(0xff197278),
           child: Row(
@@ -30,10 +30,10 @@ class TaskTile extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       alignment: Alignment.topLeft,
                       child: Text(
-                        task.taskText,
+                        task.taskText!,
                         style: TextStyle(
                           decoration:
-                              task.isDone ? TextDecoration.lineThrough : null,
+                              task.isDone! ? TextDecoration.lineThrough : null,
                           color: task.color == 0xffffffff ||
                                   task.color == 0xffDDEDAA
                               ? const Color(0xFF283d3b)
@@ -66,7 +66,7 @@ class TaskTile extends StatelessWidget {
                 child: Checkbox(
                   value: task.isDone,
                   activeColor: const Color(0xfFc44900),
-                  onChanged: (bool isDone) {
+                  onChanged: (bool? isDone) {
                     hiveHelper.toggleDoneState(index);
                     if (hiveHelper.allBoxesTicked()) {
                       showModalBottomSheet(
@@ -88,9 +88,9 @@ class TaskTile extends StatelessWidget {
   }
 
   Future<void> _selectColorDialog({
-    BuildContext context,
-    HiveHelper hiveHelper,
-    int index,
+    required BuildContext context,
+    HiveHelper? hiveHelper,
+    int? index,
   }) async {
     return showDialog<void>(
       context: context,
@@ -105,7 +105,7 @@ class TaskTile extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff197278);
+                      hiveHelper!.updateColor(index, 0xff197278);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -118,7 +118,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff283d3b);
+                      hiveHelper!.updateColor(index, 0xff283d3b);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -131,7 +131,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff3D348B);
+                      hiveHelper!.updateColor(index, 0xff3D348B);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -144,7 +144,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff684551);
+                      hiveHelper!.updateColor(index, 0xff684551);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -157,7 +157,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffD15387);
+                      hiveHelper!.updateColor(index, 0xffD15387);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -170,7 +170,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffDDEDAA);
+                      hiveHelper!.updateColor(index, 0xffDDEDAA);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -183,7 +183,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff7AC74F);
+                      hiveHelper!.updateColor(index, 0xff7AC74F);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -196,7 +196,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffc44900);
+                      hiveHelper!.updateColor(index, 0xffc44900);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -211,7 +211,7 @@ class TaskTile extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  hiveHelper.updateColor(index, 0xffffffff);
+                  hiveHelper!.updateColor(index, 0xffffffff);
                   Navigator.of(context).pop();
                 },
                 child: const Image(
@@ -228,7 +228,7 @@ class TaskTile extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff197278);
+                      hiveHelper!.updateColor(index, 0xff197278);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -237,7 +237,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff283d3b);
+                      hiveHelper!.updateColor(index, 0xff283d3b);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -246,7 +246,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff3D348B);
+                      hiveHelper!.updateColor(index, 0xff3D348B);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -255,7 +255,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff684551);
+                      hiveHelper!.updateColor(index, 0xff684551);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -268,7 +268,7 @@ class TaskTile extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffD15387);
+                      hiveHelper!.updateColor(index, 0xffD15387);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -277,7 +277,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffDDEDAA);
+                      hiveHelper!.updateColor(index, 0xffDDEDAA);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -286,7 +286,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xff7AC74F);
+                      hiveHelper!.updateColor(index, 0xff7AC74F);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -295,7 +295,7 @@ class TaskTile extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      hiveHelper.updateColor(index, 0xffc44900);
+                      hiveHelper!.updateColor(index, 0xffc44900);
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -309,7 +309,7 @@ class TaskTile extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  hiveHelper.updateColor(index, 0xffffffff);
+                  hiveHelper!.updateColor(index, 0xffffffff);
                   Navigator.of(context).pop();
                 },
                 child: const Image(

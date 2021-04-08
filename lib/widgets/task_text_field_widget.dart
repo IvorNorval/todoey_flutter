@@ -11,9 +11,9 @@ class TaskTextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String newTaskTitle;
+    String? newTaskTitle;
     return Consumer<HiveHelper>(
-      builder: (context, hiveHelper, Widget child) {
+      builder: (context, hiveHelper, Widget? child) {
         return Container(
           color: const Color(0xFFedddd4),
           child: Container(
@@ -103,7 +103,7 @@ class TaskTextFieldWidget extends StatelessWidget {
     );
   }
 
-  Future<void> _selectColorDialog({BuildContext context, Task task}) async {
+  Future<void> _selectColorDialog({required BuildContext context, Task? task}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -117,7 +117,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff197278;
+                      task!.color = 0xff197278;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -130,7 +130,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff283d3b;
+                      task!.color = 0xff283d3b;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -143,7 +143,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff3D348B;
+                      task!.color = 0xff3D348B;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -156,7 +156,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff684551;
+                      task!.color = 0xff684551;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -169,7 +169,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffD15387;
+                      task!.color = 0xffD15387;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -182,7 +182,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffDDEDAA;
+                      task!.color = 0xffDDEDAA;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -195,7 +195,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff7AC74F;
+                      task!.color = 0xff7AC74F;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -208,7 +208,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffc44900;
+                      task!.color = 0xffc44900;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -223,7 +223,7 @@ class TaskTextFieldWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  task.color = 0xffffffff;
+                  task!.color = 0xffffffff;
                   Navigator.of(context).pop();
                 },
                 child: const Image(
@@ -240,7 +240,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff197278;
+                      task!.color = 0xff197278;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -249,7 +249,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff283d3b;
+                      task!.color = 0xff283d3b;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -258,7 +258,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff3D348B;
+                      task!.color = 0xff3D348B;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -267,7 +267,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff684551;
+                      task!.color = 0xff684551;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -280,7 +280,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffD15387;
+                      task!.color = 0xffD15387;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -289,7 +289,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffDDEDAA;
+                      task!.color = 0xffDDEDAA;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -298,7 +298,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xff7AC74F;
+                      task!.color = 0xff7AC74F;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -307,7 +307,7 @@ class TaskTextFieldWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      task.color = 0xffc44900;
+                      task!.color = 0xffc44900;
                       Navigator.of(context).pop();
                     },
                     child: const Image(
@@ -321,7 +321,7 @@ class TaskTextFieldWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  task.color = 0xffffffff;
+                  task!.color = 0xffffffff;
                   Navigator.of(context).pop();
                 },
                 child: const Image(
@@ -332,23 +332,28 @@ class TaskTextFieldWidget extends StatelessWidget {
           );
         }
         return SingleChildScrollView(
-          child: AlertDialog(
-            contentPadding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-            backgroundColor: Colors.transparent,
-            title: Shimmer.fromColors(
-              baseColor: const Color(0xFFedddd4),
-              period: const Duration(milliseconds: 5000),
-              highlightColor: const Color(0xFF283d3b),
-              child: const Text(
-                'Select Color',
-                style: TextStyle(
-                  color: Color(0xFFedddd4),
-                  fontSize: 35.0,
-                  fontWeight: FontWeight.w700,
+          child: Padding(
+            padding: MediaQuery.of(context).orientation == Orientation.landscape
+                ? const EdgeInsets.only(left: 30)
+                : const EdgeInsets.only(top: 120),
+            child: AlertDialog(
+              contentPadding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+              backgroundColor: Colors.transparent,
+              title: Shimmer.fromColors(
+                baseColor: const Color(0xFFedddd4),
+                period: const Duration(milliseconds: 5000),
+                highlightColor: const Color(0xFF283d3b),
+                child: const Text(
+                  'Select Color',
+                  style: TextStyle(
+                    color: Color(0xFFedddd4),
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
+              content: widget,
             ),
-            content: widget,
           ),
         );
       },

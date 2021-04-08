@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'task.g.dart';
 
 @HiveType(typeId: 0)
 class Task {
-  Task({this.taskText, this.isDone, @required this.color});
+  Task({this.taskText, this.isDone, required this.color});
   @HiveField(0)
-  final String taskText;
+  final String? taskText;
   @HiveField(1)
-  bool isDone;
+  bool? isDone;
   @HiveField(2)
-  int color;
+  int? color;
 }

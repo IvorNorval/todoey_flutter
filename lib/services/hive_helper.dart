@@ -6,9 +6,9 @@ import '../constants.dart';
 
 class HiveHelper extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
-  bool isInfoList;
+  late bool isInfoList;
   List<Task> infoTasks = [];
-  bool showAd;
+  late bool showAd;
 
   HiveHelper() {
     isInfoList = false;
@@ -25,7 +25,7 @@ class HiveHelper extends ChangeNotifier {
     notifyListeners();
   }
 
-  Box<Task> getTaskBox() => Hive.box('tasks');
+  Box<Task?> getTaskBox() => Hive.box('tasks');
 
   void setInfoList() {
     isInfoList = true;
@@ -50,11 +50,11 @@ class HiveHelper extends ChangeNotifier {
     }
   }
 
-  Task getTask(int index) {
+  Task? getTask(int? index) {
     if (isInfoList) {
-      return infoTasks[index];
+      return infoTasks[index!];
     } else {
-      return getTaskBox().getAt(index);
+      return getTaskBox().getAt(index!);
     }
   }
 
@@ -79,15 +79,15 @@ class HiveHelper extends ChangeNotifier {
     int count = 0;
     if (isInfoList) {
       for (final Task task in infoTasks) {
-        if (task.isDone) {
+        if (task.isDone!) {
           count++;
         }
       }
     } else {
-      final List<Task> taskList = getTaskList();
+      final List<Task?> taskList = getTaskList();
 
-      for (final Task task in taskList) {
-        if (task.isDone) {
+      for (final Task? task in taskList) {
+        if (task!.isDone!) {
           count++;
         }
       }
@@ -95,8 +95,8 @@ class HiveHelper extends ChangeNotifier {
     return count;
   }
 
-  List<Task> getTaskList() {
-    final List<Task> taskList = [];
+  List<Task?> getTaskList() {
+    final List<Task?> taskList = [];
     for (int n = 0; n < getTaskBoxLength(); n++) {
       taskList.add(getTask(n));
     }
@@ -118,24 +118,24 @@ class HiveHelper extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleDoneState(int index) async {
+  Future<void> toggleDoneState(int? index) async {
     if (isInfoList) {
-      infoTasks[index].isDone = !infoTasks[index].isDone;
+      infoTasks[index!].isDone = !infoTasks[index].isDone!;
     } else {
-      final Task task = getTask(index);
-      task.isDone = !task.isDone;
-      await getTaskBox().putAt(index, task);
+      final Task task = getTask(index)!;
+      task.isDone = !task.isDone!;
+      await getTaskBox().putAt(index!, task);
     }
     notifyListeners();
   }
 
-  Future<void> updateColor(int index, int color) async {
+  Future<void> updateColor(int? index, int color) async {
     if (isInfoList) {
-      infoTasks[index].color = color;
+      infoTasks[index!].color = color;
     } else {
-      final Task task = getTask(index);
+      final Task task = getTask(index)!;
       task.color = color;
-      await getTaskBox().putAt(index, task);
+      await getTaskBox().putAt(index!, task);
     }
     notifyListeners();
   }
@@ -150,8 +150,8 @@ class HiveHelper extends ChangeNotifier {
       final Task item = infoTasks.removeAt(oldIndex);
       infoTasks.insert(index, item);
     } else {
-      final List<Task> list = getTaskList();
-      final Task item = list.removeAt(oldIndex);
+      final List<Task?> list = getTaskList();
+      final Task? item = list.removeAt(oldIndex);
       list.insert(index, item);
       deleteAllTask();
       getTaskBox().addAll(list);
@@ -163,14 +163,14 @@ class HiveHelper extends ChangeNotifier {
     bool allTicked = true;
     if (isInfoList) {
       for (final Task tk in infoTasks) {
-        if (!tk.isDone) {
+        if (!tk.isDone!) {
           allTicked = false;
           break;
         }
       }
     } else {
-      for (final Task tk in getTaskList()) {
-        if (!tk.isDone) {
+      for (final Task? tk in getTaskList()) {
+        if (!tk!.isDone!) {
           allTicked = false;
           break;
         }

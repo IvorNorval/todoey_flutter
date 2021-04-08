@@ -8,7 +8,7 @@ class TaskListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<HiveHelper>(
-      builder: (context, hiveHelper, Widget child) {
+      builder: (context, hiveHelper, Widget? child) {
         return Expanded(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),

@@ -16,9 +16,9 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  BannerAd _ad;
+  BannerAd? _ad;
   bool _isAdLoaded = false;
-  Orientation _orientation;
+  Orientation? _orientation;
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _TasksScreenState extends State<TasksScreen> {
     _ad = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
       size: AdSize.banner,
-      request: AdRequest(),
+      request: const AdRequest(),
       listener: AdListener(
         onAdLoaded: (_) {
           setState(
@@ -36,12 +36,13 @@ class _TasksScreenState extends State<TasksScreen> {
           );
         },
         onAdFailedToLoad: (_, error) {
-          print('Ad load failed (code=${error.code} message=${error.message})');
+          //print('Ad load failed (code=${error.code} message=${error
+          //    .message})');
         },
       ),
     );
 
-    _ad.load();
+    _ad!.load();
   }
 
   @override
@@ -54,7 +55,7 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<HiveHelper>(
-      builder: (context, hiveHelper, Widget child) {
+      builder: (context, hiveHelper, Widget? child) {
         if (MediaQuery.of(context).orientation == Orientation.landscape) {
           if (_orientation != null && _orientation == Orientation.portrait) {
             _isAdLoaded = false;
@@ -62,7 +63,7 @@ class _TasksScreenState extends State<TasksScreen> {
             _ad = BannerAd(
               adUnitId: AdHelper.bannerAdUnitId,
               size: AdSize.banner,
-              request: AdRequest(),
+              request: const AdRequest(),
               listener: AdListener(
                 onAdLoaded: (_) {
                   setState(
@@ -72,13 +73,13 @@ class _TasksScreenState extends State<TasksScreen> {
                   );
                 },
                 onAdFailedToLoad: (_, error) {
-                  print(
-                      'Ad load failed (code=${error.code} message=${error.message})');
+                  // print(
+                  //     'Ad load failed (code=${error.code} message=${error.message})');
                 },
               ),
             );
 
-            _ad.load();
+            _ad!.load();
           }
           _orientation = Orientation.landscape;
           return SafeArea(
@@ -102,7 +103,7 @@ class _TasksScreenState extends State<TasksScreen> {
                             alignment: Alignment.center,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: AdWidget(ad: _ad),
+                              child: AdWidget(ad: _ad!),
                             ),
                           )
                         else
@@ -122,7 +123,7 @@ class _TasksScreenState extends State<TasksScreen> {
             _ad = BannerAd(
               adUnitId: AdHelper.bannerAdUnitId,
               size: AdSize.banner,
-              request: AdRequest(),
+              request: const AdRequest(),
               listener: AdListener(
                 onAdLoaded: (_) {
                   setState(
@@ -132,13 +133,13 @@ class _TasksScreenState extends State<TasksScreen> {
                   );
                 },
                 onAdFailedToLoad: (_, error) {
-                  print(
-                      'Ad load failed (code=${error.code} message=${error.message})');
+                  // print(
+                  //     'Ad load failed (code=${error.code} message=${error.message})');
                 },
               ),
             );
 
-            _ad.load();
+            _ad!.load();
           }
           _orientation = Orientation.portrait;
           return Scaffold(
@@ -155,7 +156,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: AdWidget(ad: _ad),
+                      child: AdWidget(ad: _ad!),
                     ),
                   )
                 else

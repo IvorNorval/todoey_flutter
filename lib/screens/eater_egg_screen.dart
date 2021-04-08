@@ -9,8 +9,8 @@ class EasterEggScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<HiveHelper>(
-      builder: (context, hiveHelper, Widget child) {
-        String eggImage;
+      builder: (context, hiveHelper, Widget? child) {
+        late String eggImage;
         if (hiveHelper.getTaskBoxLength() == 0) {
           eggImage = 'images/egg1.gif';
         } else if (hiveHelper.allBoxesTicked()) {

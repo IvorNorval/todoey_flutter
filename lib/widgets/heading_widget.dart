@@ -10,7 +10,7 @@ class Heading extends StatefulWidget {
 }
 
 class _HeadingState extends State<Heading> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   final Tween<double> turnsTween = Tween<double>(
     begin: 0,
@@ -40,8 +40,8 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
       if (MediaQuery.of(context).orientation == Orientation.landscape) {
         edgeInsets = EdgeInsets.only(
             top: isKeyboardVisible ? 5.0 : 60.0,
-            left: 30.0,
-            right: 30.0,
+            left: 25.0,
+            right: 25.0,
             bottom: isKeyboardVisible ? 5 : 20.0);
         _controller.forward();
       } else {
@@ -51,7 +51,7 @@ class _HeadingState extends State<Heading> with TickerProviderStateMixin {
       }
 
       return Consumer<HiveHelper>(
-        builder: (context, hiveHelper, Widget child) {
+        builder: (context, hiveHelper, Widget? child) {
           return Container(
             padding: edgeInsets,
             child: Column(
