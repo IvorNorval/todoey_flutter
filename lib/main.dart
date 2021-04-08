@@ -28,8 +28,6 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else {
-                final Box<Task> box = Hive.box('tasks');
-                //if (box.isEmpty) box.addAll(kFirstList);
                 return TasksScreen();
               }
             } else {

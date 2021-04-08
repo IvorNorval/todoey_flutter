@@ -7,8 +7,8 @@ import 'package:todoey_flutter/screens/eater_egg_screen.dart';
 import 'package:todoey_flutter/services/hive_helper.dart';
 
 class TaskTile extends StatelessWidget {
-  const TaskTile({this.index, Key? key}) : super(key: key);
-  final int? index;
+  const TaskTile({required this.index, Key? key}) : super(key: key);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class TaskTile extends StatelessWidget {
   Future<void> _selectColorDialog({
     required BuildContext context,
     HiveHelper? hiveHelper,
-    int? index,
+    required int index,
   }) async {
     return showDialog<void>(
       context: context,
